@@ -1,0 +1,55 @@
+---
+# file playbook.yml
+
+- hosts: webservers
+  roles:
+##########################################################
+# ######## Some common tasks ######
+#  - common
+#
+#  pre_tasks:
+#  - debug: msg="Performing some common tasks........."
+#
+#
+#  post_tasks:
+#  - debug: msg="All tasks are finished>>>>>"
+###########################################################
+
+
+###########################################################
+###################### Install Docker######################
+# - docker
+#
+#  pre_tasks:
+#  - debug: msg="Installing Docker (starting.........) "
+#
+#
+# post_tasks:
+#  - debug: msg="Docker finished>>>>>>>"
+###########################################################
+
+###########################################################
+##################### Create nginx docker image #######################
+  - nginx
+#
+  pre_tasks:
+     - debug: msg="Creating nginx docker image (starting.........) "
+#
+#
+  post_tasks:
+     - debug: msg="nginx Finished>>>>>>>"
+###########################################################
+
+##################### host static website #######################
+#  - nginx
+#
+#  pre_tasks:
+#     - debug: msg="Creating nginx docker image (starting.........) "
+#
+#
+#  post_tasks:
+#     - debug: msg="nginx Finished>>>>>>>"
+###########################################################
+
+
+

@@ -1,0 +1,11 @@
+---
+# file common/tasks/main.yml
+
+- name: run apt-get update // updating repositories.........
+  apt: update_cache=yes
+  sudo: yes
+
+- name: install docker-py ...
+  pip: name="docker-py" state="present"  version=1.1.0
+  sudo: true
+  

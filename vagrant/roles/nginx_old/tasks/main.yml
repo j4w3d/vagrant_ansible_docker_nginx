@@ -1,0 +1,20 @@
+---
+# file roles/nginx/tasks/main.yml
+
+- name: add nginx repository/s
+  shell: echo "deb http://ppa.launchpad.net/nginx/stable/ubuntu $(lsb_release -sc) main" | sudo tee /etc/apt/sources.list.d/nginx-stable.list
+  sudo: yes
+
+
+- name: add keyserver from keyserver.ubuntu.com 
+  apt_key: keyserver=keyserver.ubuntu.com id=C300EE8C
+  sudo: yes
+
+- name: udpate apt  /updating repositories
+  apt: update_cache=yes
+  sudo: yes
+
+- name: install nginx / installing nginx
+  apt: name="nginx" state=present
+  sudo: yes
+

@@ -1,0 +1,28 @@
+---
+# file roles/nginx/tasks/main.yml
+
+
+
+# create dockerfile directory : DONE 
+
+- name: create the directory for Dockerfile
+  file: path="{{build_dir}}" state="directory"
+
+
+- name: push dockerfile on node's directory
+  template: src="Dockerfile.j2" dest="{{build_dir}}/Dockerfile"
+
+- name: build image from dockerfile
+  shell: docker build -t {{image_name}}  {{build_dir}}
+  sudo: yes
+
+
+- name: Run docker nginx image 
+  docker:
+    name: jawed_nginx_img
+    image: "{{image_name}}"
+    state: started
+    ports:
+     - "{{nginx_port}}:80"
+  sudo: yes
+
